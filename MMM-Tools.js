@@ -161,7 +161,9 @@ Module.register("MMM-Tools", {
     container.className = "container"
     var total = document.createElement("div")
     total.className = "total"
-    total.innerHTML = this.status["MEMORY_TOTAL"]
+    var max_value = document.createElement("div")
+    max_value.className = "max_value"
+    max_value.innerHTML = this.status["MEMORY_TOTAL"]
     var used = document.createElement("div")
     used.className = "used bar"
     used.style.width = Math.round(this.status["MEMORY_USED_PERCENT"]) + "%"
@@ -169,6 +171,7 @@ Module.register("MMM-Tools", {
     if (step > 100) step = 100
     used.className += " step" + step
     used.innerHTML = this.status["MEMORY_USED"]
+    total.appendChild(max_value)
     total.appendChild(used)
     container.appendChild(total)
     wrapper.appendChild(label)
@@ -186,7 +189,9 @@ Module.register("MMM-Tools", {
     container.className = "container"
     var total = document.createElement("div")
     total.className = "total"
-    total.innerHTML = this.status["STORAGE_TOTAL"]
+    var max_value = document.createElement("div")
+    max_value.className = "max_value"
+    max_value.innerHTML = this.status["STORAGE_TOTAL"]
     var used = document.createElement("div")
     used.className = "used bar"
     used.style.width = Math.round(this.status["STORAGE_USED_PERCENT"]) + "%"
@@ -194,6 +199,7 @@ Module.register("MMM-Tools", {
     var step = myMath.round(this.status["STORAGE_USED_PERCENT"], -1)
     if (step > 100) step = 100
     used.className += " step" + step
+    total.appendChild(max_value)
     total.appendChild(used)
     container.appendChild(total)
     wrapper.appendChild(label)
@@ -212,6 +218,9 @@ Module.register("MMM-Tools", {
     var value = document.createElement("div")
     value.className = "value"
     value.innerHTML = this.status['CPU_TEMPERATURE'] + '\°C'
+    var step = myMath.round(this.status["CPU_TEMPERATURE"], -1)
+    if (step > 100) step = 100
+    value.className += " highlight step" + step
     container.appendChild(value)
     wrapper.appendChild(label)
     wrapper.appendChild(container)
@@ -262,7 +271,9 @@ Module.register("MMM-Tools", {
     container.className = "container"
     var total = document.createElement("div")
     total.className = "total"
-    total.innerHTML = " &nbsp;"
+    var max_value = document.createElement("div")
+    max_value.className = "max_value"
+    max_value.innerHTML = " &nbsp;"
     var used = document.createElement("div")
     used.className = "used bar"
     used.style.width = Math.round(this.status["CPU_USAGE"]) + "%"
@@ -270,6 +281,7 @@ Module.register("MMM-Tools", {
     var step = myMath.round(this.status["CPU_USAGE"], -1)
     if (step > 100) step = 100
     used.className += " step" + step
+    total.appendChild(max_value)
     total.appendChild(used)
     container.appendChild(total)
     wrapper.appendChild(label)
